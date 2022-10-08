@@ -1,0 +1,48 @@
+syms x;
+f(x)= x^3/3-x;
+x_newton = [0.1, 0.2, 0.9, 9.0];
+epsilon = 1e-8;
+fprintf("\n牛顿迭代法\n")
+for x = x_newton
+    x0 = x;
+    ii = 0;
+    r = [];
+    while 1
+        x1 = Newton(f,x0);
+        error = abs(x1-x0);
+        r(end+1) = x0;
+        x0 = x1;
+        if (error < epsilon || abs(f(x1))<eps(0))
+            break;
+        end
+        ii = ii+1;
+    end
+    fprintf("初值:%f, 根: %.15f, 迭代次数: %d\n",x, x1, ii);
+end
+
+fprintf("\n取最后一次的迭代结果来验证收敛阶的合理性\n")
+root = x1;
+x0 = x_newton(end);
+ii = 0;
+while 1
+        x1 = Newton(f,x0);
+        error = abs(x1-root);
+        x0 = x1;
+        if (error < epsilon || abs(f(x1))<eps(0))
+            break;
+        end
+        ii = ii+1;
+        if ii==1
+        fprintf("k = %d, xk = %d, ek = %.15f, C = %.15f  ",ii, x1, error, );
+end
+
+e = abs(r-x1);
+fprintf("初值:%f, 迭代次数: %d:\n")
+
+for i = 1:length(e)-1
+    fprintf("%.15f, ",e(i+1)/e(i)^2);%注，这里验证了牛顿迭代收敛阶是否为2
+end
+
+
+
+

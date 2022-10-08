@@ -1,0 +1,29 @@
+syms x;
+f(x)= x^3/3-x;
+x_tang = [-.1,.1; -.2, .2; -2, .9,; .9, 9]';
+epsilon = 1e-8;
+fprintf("\n弦截法\n")
+for x = x_tang
+    x0 = x(1);
+    x1 = x(2);
+    ii = 0;
+    r = [];
+    while 1
+        x2 = Tangent(f,x0,x1);
+        error = abs(x2 - x1);
+        r(end+1) = x1;
+        x0 = x1;
+        x1 = x2;
+        if (error < epsilon)
+            break;
+        end
+        ii = ii+1;
+    end
+    fprintf("初值: x0=%f, x1=%f, 根: %.15f, 迭代次数: %d\n",x(1),x(2),x2, ii);
+end
+
+fprintf("\n这里取最后一次迭代，验证弦截法迭代收敛阶是否为(1+sqrt(5))/2\n")
+
+
+
+

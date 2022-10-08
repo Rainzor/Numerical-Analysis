@@ -1,0 +1,30 @@
+syms x;
+f(x)= x^3/3-x;
+x_newton = [0.1, 0.2, 0.9, 9.0];
+x_tang = [-.1,.1; -.2, .2; -2, .9,; .9, 9]';
+epsilon = 1e-8;
+fprintf("牛顿迭代法\n")
+for x = x_newton
+    x0 = x;
+    ii = 0;
+    r = [];
+    while 1
+        x1 = Newton(f,x0);
+        error = abs(x1-x0);
+        r(end+1) = x0;
+        x0 = x1;
+        if (error < epsilon || abs(f(x0))<eps(0))
+            break;
+        end
+        ii = ii+1;
+    end
+    fprintf("初值:%f, 根: %.15f, 迭代次数: %d\n",x, x1, ii);
+    e = abs(r-x1);
+    fprintf("e_k+1/e^2_k: ")
+    for i = 1:length(e)-1
+        fprintf("%.15f, " e(i+1)/e(i)^2);
+        
+    end
+end
+
+
