@@ -1,9 +1,11 @@
 ## 数学推导
 
 **推导过程如下，考虑截断误差小于$10^{-6}$**
+
 $$
 \sum\limits_{k=n}^{\infty}\frac{1}{k(k+x)}<\sum\limits_{k=n}^{\infty}\frac{1}{k^2}<\int\limits_{k=n-1}^{\infty}\frac{1}{k^2}dk=\frac{1}{n-1}<10^{-6}
 $$
+
 **所以可见求和上界**$n \geq 10^6$
 
 
