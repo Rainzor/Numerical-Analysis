@@ -1,0 +1,42 @@
+i = [1,1,1,2,2,2,2,3,3,3,4,4,4,4,5,5,5,5,6,6,6,7,7,8,8,8,9,9,9];
+j = [1,2,6,1,2,3,5,2,3,4,3,4,5,9,4,5,6,8,5,6,7,6,7,5,8,9,4,8,9];
+v = [31, -13, -10, ...
+    -13, 35, -9,-11,...
+    -9, 31, -10, ...
+    -10, 79, -30, -9,...
+    -30, 57, -7, -5,...
+    -7, 47, -30, ...
+    -30, 41,...
+    -5, 27, -2,...
+    -9, -2, 29];
+b = [-15 27 -23 0 -20 12 -7 7 10]';
+n = length(b);
+A = sparse(i,j,v,n,n);
+tol = 1e-7;
+
+fprintf("\nGauss_Seidel\n");
+[step_n,x]= Gauss_Seidel(A,b,tol);
+fprintf('GS step = %d \nx(k) = (', step_n);   % the step and output x(k)
+for k=1:n-1
+    fprintf('%.16f, ', x(k));
+end
+fprintf('%.16f), \n', x(n));
+
+fprintf("\nSOR\n");
+min_step=inf;
+x_m = zeros(n,1);
+w_m = 0;
+for w = linspace(1,99,99)/50
+    [step_n,x]= SOR(A,b,tol,w);
+    if step_n < min_step
+        min_step = step_n;
+        x_m = x;
+        w_m = w;
+    end
+end
+
+fprintf('SOR min step = %d  and w = %.4f\nx(k) = (', min_step,w_m);   % the step and output x(k)
+for k=1:n-1
+    fprintf('%.16f, ', x_m(k));
+end
+fprintf('%.16f), ', x_m(n));
