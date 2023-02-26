@@ -1,8 +1,8 @@
 # README
 
-> PB20020480 王润泽 28
+> Rainzor
 
-**主程序在"hw7.m"中，hw6.m分别调用了 ”Gauss_Seidel.m“ 和 ”SOR.m“，进行计算**
+**主程序在"hw7.m"中，分别调用了 ”Gauss_Seidel.m“ 和 ”SOR.m“，进行计算**
 
 #### Gauss_Seidel
 

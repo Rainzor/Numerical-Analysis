@@ -1,10 +1,6 @@
 # README
 
-> 学号：PB20020480
->
-> 姓名：王润泽
->
-> 编号：28
+> Rainzor
 >
 > 环境：Windows11 MATLAB R2021a
 
